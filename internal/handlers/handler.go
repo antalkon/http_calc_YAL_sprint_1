@@ -10,10 +10,10 @@ import (
 	"github.com/antalkon/http_calc_YAL_sprint_1/internal/services"
 )
 
-// Проверка на наличие ключа "expression" в JSON
+// Проверка на наличие ключа в JSON
 func validateRequestBody(r *http.Request) (*models.RequestBody, error) {
 	decoder := json.NewDecoder(r.Body)
-	decoder.DisallowUnknownFields() // Отклоняем неизвестные поля
+	decoder.DisallowUnknownFields()
 
 	var req models.RequestBody
 	if err := decoder.Decode(&req); err != nil {
@@ -28,11 +28,9 @@ func validateRequestBody(r *http.Request) (*models.RequestBody, error) {
 	return &req, nil
 }
 
-// CalculateHandler обрабатывает запросы на вычисление выражений
 func CalculateHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Разрешаем только POST-запросы
 	if r.Method != http.MethodPost {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		json.NewEncoder(w).Encode(models.ErrorResponse{Error: "Method not allowed"})

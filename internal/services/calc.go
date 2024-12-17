@@ -6,7 +6,6 @@ import (
 	"strings"
 )
 
-// Calc вычисляет арифметическое выражение
 func Calc(expression string) (float64, error) {
 	var ops []byte
 	var nums []float64

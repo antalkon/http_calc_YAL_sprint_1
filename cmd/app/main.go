@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-	// Создаем маршрутизатор
 	r := router.NewRouter()
 
 	// Запуск сервера
